@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "pub_date": "2026-03-24T00:00:00Z",
+  "notes": "What's new in this release",
+  "platforms": {
+    "darwin-aarch64": {
+      "signature": "<contents of blank.app.tar.gz.sig>",
+      "url": "https://releases.example.com/blank/darwin/aarch64/blank_0.2.0_aarch64.app.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "<contents of blank.app.tar.gz.sig>",
+      "url": "https://releases.example.com/blank/darwin/x86_64/blank_0.2.0_x86_64.app.tar.gz"
+    },
+    "linux-x86_64": {
+      "signature": "<contents of blank.AppImage.sig>",
+      "url": "https://releases.example.com/blank/linux/x86_64/blank_0.2.0_amd64.AppImage"
+    },
+    "windows-x86_64": {
+      "signature": "<contents of blank-setup.exe.sig>",
+      "url": "https://releases.example.com/blank/windows/x86_64/blank_0.2.0_x64-setup.exe"
+    }
+  }
+}

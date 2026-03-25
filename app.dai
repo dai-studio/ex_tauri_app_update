@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:dai="https://diagram.app/schema/dai/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" name="Blank" targetNamespace="https://diagram.app/workflow">
+  <bpmn:process id="Process_1" name="Blank" isExecutable="false">
+    <bpmn:extensionElements>
+      <dai:workflowMeta description="Generate a blank application with update capability" defaultModel="gpt-4o" targetLanguage="" targetFramework="" version="1.0" />
+    </bpmn:extensionElements>
+    <bpmn:subProcess id="Activity_1tpgm09" name="system">
+      <bpmn:task id="Activity_1h7gk12" name="Rust" dai:stepType="dependency" />
+      <bpmn:task id="Activity_0d0k1tx" name="Tauri 2" dai:stepType="dependency" />
+      <bpmn:task id="Activity_12t4czt" name="self-update" dai:stepType="dependency" dai:notes="Use tauri&#39;s approch for self-update using a web server over https" />
+      <bpmn:task id="Activity_12b7ldu" name="purpose" dai:stepType="context" dai:notes="Build a desktop application with self-update" />
+      <bpmn:task id="Activity_0wiouy0" name="svelte-kit" dai:stepType="dependency" />
+    </bpmn:subProcess>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="Activity_1tpgm09_di" bpmnElement="Activity_1tpgm09" isExpanded="true">
+        <dc:Bounds x="-260" y="-200" width="690" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1h7gk12_di" bpmnElement="Activity_1h7gk12">
+        <dc:Bounds x="-240" y="-60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0egrtvh" bpmnElement="Activity_0d0k1tx">
+        <dc:Bounds x="-120" y="-60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0l8ouv5" bpmnElement="Activity_12t4czt">
+        <dc:Bounds x="0" y="-60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12b7ldu_di" bpmnElement="Activity_12b7ldu">
+        <dc:Bounds x="-240" y="-170" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1jvse6c" bpmnElement="Activity_0wiouy0">
+        <dc:Bounds x="120" y="-60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
