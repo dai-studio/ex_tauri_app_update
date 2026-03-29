@@ -1,6 +1,34 @@
-# blank — Tauri 2 Self-Update Demo
+# ex_tauri_app_update — Tauri 2 Self-Update Demo
 
-A minimal desktop application demonstrating Tauri 2's self-update plugin with a SvelteKit frontend. The app provides a clean reference implementation of the full update lifecycle: checking for updates, downloading with live progress, and installing with an automatic restart.
+[![Designed with DAI Studio](https://img.shields.io/badge/Designed%20with-DAI%20Studio-blue?style=flat-square)](https://dai.studio)
+
+A minimal desktop application demonstrating Tauri 2's self-update plugin with a SvelteKit frontend — designed in DAI Studio.
+
+## Designed with DAI Studio
+
+![DAI Studio workflow diagram](workflow.png)
+
+This project was designed in [DAI Studio](https://dai.studio) before a single line of code was written. The `app.dai` file at the root of this repo is the workflow. Open it in DAI Studio to explore or remix the design.
+
+> See [`session.md`](session.md) for the complete AI session that built this project.
+
+### What's in the diagram
+
+| Type | Name | Description |
+|------|------|-------------|
+| Context | Purpose | Build a desktop application with self-update capability |
+| Dependency | Rust | Systems language powering the Tauri backend — native OS integration, IPC commands, update logic |
+| Dependency | Tauri 2 | Desktop shell — native window, file system, IPC |
+| Dependency | SvelteKit | SPA-mode frontend (adapter-static, ssr=false required) |
+| Dependency | self-update | tauri-plugin-updater v2 — update check, download, install via HTTPS |
+| Rule | No Committed Keys | The private signing key must never be committed to version control |
+| Rule | SPA Mode Required | SvelteKit must use adapter-static with ssr=false — Tauri has no Node.js server |
+| Rule | HTTPS Only | Update endpoints must be served over HTTPS in production |
+| Step | Update Lifecycle | Check → download with progress streaming → verify signature → install → restart |
+
+---
+
+The app provides a clean reference implementation of the full update lifecycle: checking for updates, downloading with live progress, and installing with an automatic restart.
 
 ## Tech Stack
 
@@ -198,7 +226,9 @@ tauri_app_self_update/
 │   └── capabilities/
 │       └── default.json          # IPC capability grants (includes updater:default)
 │
+├── app.dai                       # DAI Studio workflow diagram
 ├── latest.json.template          # Template for the update server manifest
+├── session.md                    # The AI session that built this project
 ├── Makefile                      # dev, build, check targets (handles key loading)
 ├── run.sh                        # Shell script equivalent of Makefile targets
 ├── package.json                  # JS dependencies and scripts

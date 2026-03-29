@@ -5,17 +5,25 @@
       <dai:workflowMeta description="Generate a blank application with update capability" defaultModel="gpt-4o" targetLanguage="" targetFramework="" version="1.0" />
     </bpmn:extensionElements>
     <bpmn:subProcess id="Activity_1tpgm09" name="system">
-      <bpmn:task id="Activity_1h7gk12" name="Rust" dai:stepType="dependency" />
-      <bpmn:task id="Activity_0d0k1tx" name="Tauri 2" dai:stepType="dependency" />
-      <bpmn:task id="Activity_12t4czt" name="self-update" dai:stepType="dependency" dai:notes="Use tauri&#39;s approch for self-update using a web server over https" />
-      <bpmn:task id="Activity_12b7ldu" name="purpose" dai:stepType="context" dai:notes="Build a desktop application with self-update" />
-      <bpmn:task id="Activity_0wiouy0" name="svelte-kit" dai:stepType="dependency" />
+      <bpmn:task id="Activity_12b7ldu" name="purpose" dai:stepType="context" dai:notes="Build a desktop application with self-update capability. The app should demonstrate the full update lifecycle: checking for a new version, downloading with live progress, and installing with an automatic restart." />
+      <bpmn:task id="Activity_1h7gk12" name="Rust" dai:stepType="dependency" dai:notes="Systems language for the Tauri backend. Handles native OS integration, IPC commands, and all update logic via tauri-plugin-updater." />
+      <bpmn:task id="Activity_0d0k1tx" name="Tauri 2" dai:stepType="dependency" dai:notes="Desktop shell. Provides native window management, file system access, and IPC between the Rust backend and the SvelteKit frontend." />
+      <bpmn:task id="Activity_12t4czt" name="self-update" dai:stepType="dependency" dai:notes="Use tauri-plugin-updater v2 for self-update over HTTPS. Implement check_update and apply_update as Tauri commands in Rust. Stream download progress back to the frontend via a Tauri IPC Channel." />
+      <bpmn:task id="Activity_0wiouy0" name="svelte-kit" dai:stepType="dependency" dai:notes="SvelteKit 2 + Svelte 5 frontend in SPA mode. Use @sveltejs/adapter-static with fallback to index.html. SSR must be disabled (export const ssr = false in +layout.ts)." />
+      <bpmn:task id="Rule_no_key_commit" name="No Committed Keys" dai:stepType="rule" dai:notes="The private signing key must never be committed to version control. If it is lost, future updates cannot be signed and existing installs cannot be updated. Store the key at ~/.tauri/blank.key and load it via the TAURI_SIGNING_PRIVATE_KEY environment variable at build time." />
+      <bpmn:task id="Rule_spa_mode" name="SPA Mode Required" dai:stepType="rule" dai:notes="SvelteKit must use adapter-static with ssr=false. Tauri has no Node.js server, so server-side rendering is not supported. Configure svelte.config.js to use adapter-static with fallback: 'index.html'." />
+      <bpmn:task id="Rule_https_only" name="HTTPS Only" dai:stepType="rule" dai:notes="Update endpoints must be served over HTTPS in production. HTTP is only permitted during local development using the dangerousInsecureTransportProtocol flag in tauri.conf.json." />
+      <bpmn:task id="Step_update_lifecycle" name="Update Lifecycle" dai:stepType="step" dai:notes="The full update flow: (1) check the HTTPS endpoint for a new version, (2) if available, download the artifact and stream progress events (Started, Progress, Finished) back to the frontend via Channel, (3) verify the minisign signature, (4) install the update, (5) restart the app." />
     </bpmn:subProcess>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
       <bpmndi:BPMNShape id="Activity_1tpgm09_di" bpmnElement="Activity_1tpgm09" isExpanded="true">
-        <dc:Bounds x="-260" y="-200" width="690" height="250" />
+        <dc:Bounds x="-260" y="-210" width="930" height="430" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12b7ldu_di" bpmnElement="Activity_12b7ldu">
+        <dc:Bounds x="-240" y="-170" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1h7gk12_di" bpmnElement="Activity_1h7gk12">
@@ -30,12 +38,24 @@
         <dc:Bounds x="0" y="-60" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12b7ldu_di" bpmnElement="Activity_12b7ldu">
-        <dc:Bounds x="-240" y="-170" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1jvse6c" bpmnElement="Activity_0wiouy0">
         <dc:Bounds x="120" y="-60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Rule_no_key_commit_di" bpmnElement="Rule_no_key_commit">
+        <dc:Bounds x="-240" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Rule_spa_mode_di" bpmnElement="Rule_spa_mode">
+        <dc:Bounds x="-120" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Rule_https_only_di" bpmnElement="Rule_https_only">
+        <dc:Bounds x="0" y="60" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Step_update_lifecycle_di" bpmnElement="Step_update_lifecycle">
+        <dc:Bounds x="120" y="60" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
