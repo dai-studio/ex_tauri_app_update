@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:dai="https://diagram.app/schema/dai/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" name="Blank" targetNamespace="https://diagram.app/workflow">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"   xmlns:dai="https://dai.studio/schema/dai/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" name="Blank"   targetNamespace="https://dai.studio/workflow">
   <bpmn:process id="Process_1" name="Blank" isExecutable="false">
     <bpmn:extensionElements>
       <dai:workflowMeta description="Generate a blank application with update capability" defaultModel="gpt-4o" targetLanguage="" targetFramework="" version="1.0" />
